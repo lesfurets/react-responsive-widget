@@ -1,0 +1,43 @@
+{
+  "name": "react-responsive-widget",
+  "version": "0.0.6",
+  "description": "Responsive grid system similar to bootstrap that scales depending on the container size.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server",
+    "build": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lesfurets/react-responsive-widget .git"
+  },
+  "author": "Geoffrey Berard <geoffrey.berard@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lesfurets/react-fluid-grid"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "react-component"
+  ],
+  "homepage": "https://github.com/lesfurets/react-responsive-widget#readme",
+  "dependencies": {
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
+  },
+  "devDependencies": {
+    "autoprefixer-loader": "^3.2.0",
+    "babel": "6.5.2",
+    "babel-core": "6.10.4",
+    "babel-loader": "6.2.4",
+    "babel-preset-es2015": "6.9.0",
+    "babel-preset-react": "6.11.0",
+    "css-loader": "^0.23.1",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.14.0"
+  }
+}
