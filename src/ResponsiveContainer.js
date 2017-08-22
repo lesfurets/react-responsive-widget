@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import ReactDom from "react-dom";
 import "../styles/responsive-grid.less";
 
@@ -8,7 +9,7 @@ const MD = "app-md";
 const LG = "app-lg";
 
 let getFormat = (element) => {
-  let elementWidth = ReactDom.findDOMNode(element.refs.container).offsetWidth;
+  let elementWidth = ReactDom.findDOMNode(element).offsetWidth;
   if (elementWidth > element.props.lg) {
     return LG;
   } else if (elementWidth > element.props.md) {
@@ -47,7 +48,7 @@ export default class ResponsiveContainer extends React.Component {
 
   render() {
     return (
-      <div ref="container" className="app-container">
+      <div className="app-container">
         <div className={this.state.format}>
           {this.props.children}
         </div>
@@ -57,9 +58,9 @@ export default class ResponsiveContainer extends React.Component {
 }
 
 ResponsiveContainer.propTypes = {
-  lg: React.PropTypes.number,
-  md: React.PropTypes.number,
-  sm: React.PropTypes.number
+  lg: PropTypes.number,
+  md: PropTypes.number,
+  sm: PropTypes.number
 };
 
 ResponsiveContainer.defaultProps = {
