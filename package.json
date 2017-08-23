@@ -1,6 +1,6 @@
 {
   "name": "react-responsive-widget",
-  "version": "0.0.8",
+  "version": "1.0.0",
   "description": "Responsive grid system similar to bootstrap that scales depending on the container size.",
   "main": "dist/index.js",
   "scripts": {
