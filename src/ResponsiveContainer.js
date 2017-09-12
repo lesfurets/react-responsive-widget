@@ -10,11 +10,11 @@ const LG = "app-lg";
 
 let getFormat = (element) => {
   let elementWidth = ReactDom.findDOMNode(element).offsetWidth;
-  if (elementWidth > element.props.lg) {
+  if (elementWidth >= element.props.lg) {
     return LG;
-  } else if (elementWidth > element.props.md) {
+  } else if (elementWidth >= element.props.md) {
     return MD;
-  } else if (elementWidth > element.props.sm) {
+  } else if (elementWidth >= element.props.sm) {
     return SM;
   }
   return XS;
