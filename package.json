@@ -26,6 +26,8 @@
   ],
   "homepage": "https://github.com/lesfurets/react-responsive-widget#readme",
   "dependencies": {
+    "bootstrap": "^4.1.2",
+    "node-sass": "^4.9.2",
     "prop-types": "^15.5.7",
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
@@ -42,6 +44,7 @@
     "less-loader": "^4.1.0",
     "postcss-loader": "^2.1.5",
     "postcss-safe-parser": "^3.0.1",
+    "sass-loader": "^7.0.1",
     "style-loader": "^0.13.1",
     "webpack": "^4.8.3",
     "webpack-bundle-analyzer": "^2.11.1",

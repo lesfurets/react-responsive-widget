@@ -5,20 +5,20 @@ import "../styles/app.less";
 class App extends React.Component {
     render() {
         return (
-            <ResponsiveContainer sm={768} md={992} lg={1200}>
+            <ResponsiveContainer>
                 <div className="demo">
                     <div className="app-row">
-                        <div className="app-col-xs-6 app-col-md-3">
-                            .app-col-xs-6 .app-col-md-3
+                        <div className="app-col-6 app-col-md-3">
+                            .app-col-6 .app-col-md-3
                         </div>
-                        <div className="app-col-xs-6 app-col-md-3">
-                            .app-col-xs-6 .app-col-md-3
+                        <div className="app-col-6 app-col-md-3">
+                            .app-col-6 .app-col-md-3
                         </div>
-                        <div className="app-col-xs-6 app-col-md-3">
-                            .app-col-xs-6 .app-col-md-3
+                        <div className="app-col-6 app-col-md-3">
+                            .app-col-6 .app-col-md-3
                         </div>
-                        <div className="app-col-xs-6 app-col-md-3">
-                            .app-col-xs-6 .app-col-md-3
+                        <div className="app-col-6 app-col-md-3">
+                            .app-col-6 .app-col-md-3
                         </div>
                     </div>
                 </div>

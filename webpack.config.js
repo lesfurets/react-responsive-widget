@@ -48,6 +48,20 @@ module.exports = (env, argv) => ({
                         },
                     },
                     "less-loader"]
+            },
+            {
+                test: /\.scss$/,
+                use: ["style-loader",
+                    "css-loader",
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            config: {path: __dirname, ctx: {env: argv.mode}},
+                            sourceMap: argv.mode !== "production",
+                        },
+                    },
+                    "sass-loader"
+                ]
             }
         ],
     }
