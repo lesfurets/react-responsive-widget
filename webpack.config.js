@@ -1,50 +1,54 @@
-var webpack = require('webpack');
+const path = require("path");
+const rootPath = process.cwd();
 
-module.exports = {
-  entry: "./src/index.js",
-  output: {
-    path: __dirname + '/dist',
-    filename: 'index.js',
-    library: 'ReactResponsiveWidget',
-    libraryTarget: 'umd',
-  },
-  externals: [
-    {
-      react: {
-        root: 'React',
-        commonjs2: 'react',
-        commonjs: 'react',
-        amd: 'react',
-      },
+module.exports = (env, argv) => ({
+    entry: "./src/index.js",
+    output: {
+        path: path.join(rootPath,'/dist'),
+        filename: 'index.js',
+        library: 'ReactResponsiveWidget',
+        libraryTarget: 'umd',
     },
-    {
-      'react-dom': {
-        root: 'ReactDOM',
-        commonjs2: 'react-dom',
-        commonjs: 'react-dom',
-        amd: 'react-dom',
-      },
-    },
-  ],
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          presets: ['es2015', 'react']
-        }
-      },
-      {
-        test: /\.less$/,
-        loader: "style!css!autoprefixer!less"
-      },
-    ]
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    })
-  ]
-}
+    externals: [
+        {
+            react: {
+                root: 'React',
+                commonjs2: 'react',
+                commonjs: 'react',
+                amd: 'react',
+            },
+        },
+        {
+            'react-dom': {
+                root: 'ReactDOM',
+                commonjs2: 'react-dom',
+                commonjs: 'react-dom',
+                amd: 'react-dom',
+            },
+        },
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader'
+                }
+            },
+            {
+                test: /\.less$/,
+                use: ["style-loader",
+                    "css-loader",
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            config: {path: __dirname, ctx: {env: argv.mode}},
+                            sourceMap: argv.mode !== "production",
+                        },
+                    },
+                    "less-loader"]
+            }
+        ],
+    }
+});
