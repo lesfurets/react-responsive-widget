@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import ReactDom from "react-dom";
-import "../styles/responsive-grid.scss";
+import "../styles/responsive-container.scss";
 
 const XS = "app-xs";
 const SM = "app-sm";
@@ -11,7 +11,6 @@ const XL = "app-xl";
 
 let getFormat = (element) => {
     let elementWidth = ReactDom.findDOMNode(element).offsetWidth;
-    console.log(elementWidth);
     if (elementWidth >= element.props.xl) {
         return XL;
     } else if (elementWidth >= element.props.lg) {

@@ -1,0 +1,65 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "grid-framework";
+@import "~bootstrap/scss/mixins/breakpoints";
+@import "~bootstrap/scss/mixins/grid";
+
+$grid-breakpoints: (
+        xs: ".app-xs, .app-sm, .app-md, .app-lg, .app-xl",
+        sm: ".app-sm, .app-md, .app-lg, .app-xl",
+        md: ".app-md, .app-lg, .app-xl",
+        lg: ".app-lg, .app-xl",
+        xl: ".app-lg"
+);
+
+.app-container {
+  -ms-overflow-style: scrollbar;
+  padding: 0 ($grid-gutter-width/2);
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  // Row
+  //
+  // Rows contain and clear the floats of your columns.
+
+  @if $enable-grid-classes {
+    .app-row {
+      @include make-row();
+    }
+
+    // Remove the negative margin from default .row, then the horizontal padding
+    // from all immediate children columns (to prevent runaway style inheritance).
+    .app-no-gutters {
+      margin-right: 0;
+      margin-left: 0;
+
+      > .app-col,
+      > *[class^="app-col"], > *[class*=" app-col"] {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+  }
+
+  // Columns
+  //
+  // Common styles for small and large grid columns
+
+  @include make-grid-columns($grid-columns, $grid-gutter-width, $grid-breakpoints);
+
+  // Display
+  //
+  // Utilities for common `display` values
+
+  @include make-display($grid-breakpoints);
+
+  // Flex variation
+  //
+  // Custom styles for additional flex alignment options.
+
+  @include make-alignment($grid-breakpoints);
+}
