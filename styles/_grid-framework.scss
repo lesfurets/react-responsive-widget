@@ -1,0 +1,218 @@
+@import "~bootstrap/scss/variables";
+
+@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+
+  // Common properties for all breakpoints
+  *[class^="app-col"], *[class*=" app-col"] {
+    position: relative;
+    width: 100%;
+    min-height: 1px; // Prevent columns from collapsing when empty
+    padding-right: ($gutter / 2);
+    padding-left: ($gutter / 2);
+  }
+
+  @each $breakpoint in map-keys($breakpoints) {
+
+    $infix: if($breakpoint == "xs", "", "-#{$breakpoint}");
+
+    #{map-get($breakpoints, $breakpoint)} {
+
+      // Provide basic `.col-{bp}` classes for equal-width flexbox columns
+      .app-col#{$infix} {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+      }
+      .app-col#{$infix}-auto {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: none; // Reset earlier grid tiers
+      }
+
+      @for $i from 1 through $columns {
+        .app-col#{$infix}-#{$i} {
+          @include make-col($i, $columns);
+        }
+      }
+
+      .app-order#{$infix}-first {
+        order: -1;
+      }
+
+      .app-order#{$infix}-last {
+        order: $columns + 1;
+      }
+
+      @for $i from 0 through $columns {
+        .app-order#{$infix}-#{$i} {
+          order: $i;
+        }
+      }
+
+      // `$columns - 1` because offsetting by the width of an entire row isn't possible
+      @for $i from 0 through ($columns - 1) {
+        @if not ($infix == "" and $i == 0) { // Avoid emitting useless .offset-0
+          .app-offset#{$infix}-#{$i} {
+            @include make-col-offset($i, $columns);
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin make-display($breakpoints: $grid-breakpoints) {
+
+  @each $breakpoint in map-keys($grid-breakpoints) {
+
+    $infix: if($breakpoint == "xs", "", "-#{$breakpoint}");
+
+    #{map-get($breakpoints, $breakpoint)} {
+      .app-d#{$infix}-none {
+        display: none !important;
+      }
+      .app-d#{$infix}-inline {
+        display: inline !important;
+      }
+      .app-d#{$infix}-inline-block {
+        display: inline-block !important;
+      }
+      .app-d#{$infix}-block {
+        display: block !important;
+      }
+      .app-d#{$infix}-table {
+        display: table !important;
+      }
+      .app-d#{$infix}-table-row {
+        display: table-row !important;
+      }
+      .app-d#{$infix}-table-cell {
+        display: table-cell !important;
+      }
+      .app-d#{$infix}-flex {
+        display: flex !important;
+      }
+      .app-d#{$infix}-inline-flex {
+        display: inline-flex !important;
+      }
+    }
+  }
+}
+
+@mixin make-alignment($breakpoints: $grid-breakpoints) {
+
+  @each $breakpoint in map-keys($grid-breakpoints) {
+
+    $infix: if($breakpoint == "xs", "", "-#{$breakpoint}");
+
+    #{map-get($breakpoints, $breakpoint)} {
+      .app-flex#{$infix}-row {
+        flex-direction: row !important;
+      }
+      .app-flex#{$infix}-column {
+        flex-direction: column !important;
+      }
+      .app-flex#{$infix}-row-reverse {
+        flex-direction: row-reverse !important;
+      }
+      .app-flex#{$infix}-column-reverse {
+        flex-direction: column-reverse !important;
+      }
+
+      .app-flex#{$infix}-wrap {
+        flex-wrap: wrap !important;
+      }
+      .app-flex#{$infix}-nowrap {
+        flex-wrap: nowrap !important;
+      }
+      .app-flex#{$infix}-wrap-reverse {
+        flex-wrap: wrap-reverse !important;
+      }
+      .app-flex#{$infix}-fill {
+        flex: 1 1 auto !important;
+      }
+      .app-flex#{$infix}-grow-0 {
+        flex-grow: 0 !important;
+      }
+      .app-flex#{$infix}-grow-1 {
+        flex-grow: 1 !important;
+      }
+      .app-flex#{$infix}-shrink-0 {
+        flex-shrink: 0 !important;
+      }
+      .app-flex#{$infix}-shrink-1 {
+        flex-shrink: 1 !important;
+      }
+
+      .app-justify-content#{$infix}-start {
+        justify-content: flex-start !important;
+      }
+      .app-justify-content#{$infix}-end {
+        justify-content: flex-end !important;
+      }
+      .app-justify-content#{$infix}-center {
+        justify-content: center !important;
+      }
+      .app-justify-content#{$infix}-between {
+        justify-content: space-between !important;
+      }
+      .app-justify-content#{$infix}-around {
+        justify-content: space-around !important;
+      }
+
+      .app-align-items#{$infix}-start {
+        align-items: flex-start !important;
+      }
+      .app-align-items#{$infix}-end {
+        align-items: flex-end !important;
+      }
+      .app-align-items#{$infix}-center {
+        align-items: center !important;
+      }
+      .app-align-items#{$infix}-baseline {
+        align-items: baseline !important;
+      }
+      .app-align-items#{$infix}-stretch {
+        align-items: stretch !important;
+      }
+
+      .app-align-content#{$infix}-start {
+        align-content: flex-start !important;
+      }
+      .app-align-content#{$infix}-end {
+        align-content: flex-end !important;
+      }
+      .app-align-content#{$infix}-center {
+        align-content: center !important;
+      }
+      .app-align-content#{$infix}-between {
+        align-content: space-between !important;
+      }
+      .app-align-content#{$infix}-around {
+        align-content: space-around !important;
+      }
+      .app-align-content#{$infix}-stretch {
+        align-content: stretch !important;
+      }
+
+      .app-align-self#{$infix}-auto {
+        align-self: auto !important;
+      }
+      .app-align-self#{$infix}-start {
+        align-self: flex-start !important;
+      }
+      .app-align-self#{$infix}-end {
+        align-self: flex-end !important;
+      }
+      .app-align-self#{$infix}-center {
+        align-self: center !important;
+      }
+      .app-align-self#{$infix}-baseline {
+        align-self: baseline !important;
+      }
+      .app-align-self#{$infix}-stretch {
+        align-self: stretch !important;
+      }
+    }
+  }
+}
