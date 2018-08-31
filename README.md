@@ -1,5 +1,7 @@
 # ReactJs Responsive Widget
 
+**Live demo [here](https://lesfurets.github.io/react-responsive-widget)**
+
 ## tl;dr
 `react-responsive-widget` is a tool to help you create responsive applications with ReactJs by providing a **bootstrap grid like syntax and some utilities allowing you to change a widget layout depending on its container's size**.
 
@@ -70,7 +72,7 @@ Let's say we have 4 blocks and we want them to be on 2 columns on mobile (defaul
 </div>
 
 ```
-![](doc/img/bootstrap-1.jpg)
+![](docs/img/bootstrap-1.jpg)
 
 ### Limitations
 
@@ -97,11 +99,11 @@ If for example we created a responsive widget using bootstrap with a structure s
 </div>
 
 ```
-![](doc/img/bootstrap-grid-demo.jpg)
+![](docs/img/bootstrap-grid-demo.jpg)
 
 For now, everithing works fine, but what would happen if someone decides to use our widget in a sidebar ?
 
-![](doc/img/bootstrap-grid-problem.jpg)
+![](docs/img/bootstrap-grid-problem.jpg)
 
 Ugly ... isn't it ? The problem is due to the fact that bootstrap provides only 1 layout for a given screen resolution, no matter what the width of your component's container is. 
 In that case, the mobile layout would fit perfectly but it wont be used unless the width is less than 992px. 
@@ -151,7 +153,7 @@ export default class App extends React.Component {
     }
 }
 ```
-![](doc/img/bootstrap-1.jpg)
+![](docs/img/bootstrap-1.jpg)
 
 ### Exemple
 Let's go back to our code leading to a layout problem and change the code to use ResponsiveContainer :
@@ -179,7 +181,7 @@ Let's go back to our code leading to a layout problem and change the code to use
 ```
 
 As you can see the component work as we expected on desktop and mobile, but it also solved the issue we had while using it on a sidebar of the desktop layout.
-![](doc/img/react-responsive-grid-demo.jpg)
+![](docs/img/react-responsive-grid-demo.jpg)
 
 ### Customization
 

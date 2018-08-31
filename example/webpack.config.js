@@ -4,7 +4,7 @@ const rootPath = process.cwd();
 module.exports = (env, argv) => ({
     entry: "./example/app/main.js",
     output: {
-        path: rootPath,
+        path: rootPath + "/example",
         filename: "index.js"
     },
     devServer: {
