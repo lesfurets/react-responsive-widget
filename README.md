@@ -1,7 +1,7 @@
 # ReactJs Responsive Widget
 
 ## tl;dr
-`react-responsive-widget` is a tool to help you creating responsive applications with ReactJs by providing a **bootstrap grid like syntax and some utilities allowing you to change a widget layout depending on its container's size**.
+`react-responsive-widget` is a tool to help you create responsive applications with ReactJs by providing a **bootstrap grid like syntax and some utilities allowing you to change a widget layout depending on its container's size**.
 
 It supports a few features from [Bootstrap 4](https://getbootstrap.com/) :
 
