@@ -21,13 +21,6 @@ let getFormat = (element: HTMLDivElement, sm: number,md: number,lg: number,xl: n
     return XS;
 };
 
-const getSizeChecker = (element: HTMLDivElement, sm: number,md: number,lg: number,xl: number, format:string, setFormat:(format:string) => void) => () => {
-    let newFormat = getFormat(element, sm, md, lg, xl);
-    if (newFormat !== format) {
-        setFormat(format);
-    }
-};
-
 export interface ResponsiveContainerProps {
     xl?: number;
     lg?: number;
