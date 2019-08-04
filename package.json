@@ -1,21 +1,24 @@
 {
   "name": "react-responsive-widget",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Responsive grid system similar to bootstrap that scales depending on the container size.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:project": "webpack-dev-server",
-    "build:project": "webpack -p",
-    "start:exemple": "webpack-dev-server --mode development --config ./example/webpack.config.js --content-base example/",
-    "build:exemple": "webpack --mode production --config ./example/webpack.config.js"
+    "build:project": "webpack --progress --mode production",
+    "start:example": "webpack-dev-server --mode development --config ./example/webpack.config.js --content-base example/",
+    "build:example": "webpack --progress --mode production --config ./example/webpack.config.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lesfurets/react-responsive-widget .git"
   },
   "author": "Geoffrey Berard <geoffrey.berard@gmail.com>",
-  "contributors" : ["Sylvain Vincent"],
+  "contributors": [
+    "Sylvain Vincent"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/lesfurets/react-responsive-widget"
@@ -27,34 +30,29 @@
   ],
   "homepage": "https://github.com/lesfurets/react-responsive-widget#readme",
   "dependencies": {
-    "bootstrap": "^4.1.2",
-    "node-sass": "^4.9.2",
-    "prop-types": "^15.5.7",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "bootstrap": "4.1.3",
+    "react": "16.8.6",
+    "react-dom": "16.8.6"
   },
   "devDependencies": {
-    "autoprefixer-loader": "^3.2.0",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "7.1.4",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "css-loader": "^0.23.1",
-    "less": "2.7.1",
-    "less-loader": "^4.1.0",
-    "postcss-loader": "^2.1.5",
-    "postcss-safe-parser": "^3.0.1",
-    "sass-loader": "^7.0.1",
-    "style-loader": "^0.13.1",
-    "webpack": "^4.8.3",
-    "webpack-bundle-analyzer": "^2.11.1",
-    "webpack-cli": "^2.1.5",
-    "webpack-dev-server": "^3.1.4"
+    "@types/react": "16.8.15",
+    "@types/react-dom": "16.8.4",
+    "autoprefixer-loader": "3.2.0",
+    "css-loader": "0.26.1",
+    "node-sass": "4.12.0",
+    "postcss-loader": "2.1.5",
+    "postcss-safe-parser": "3.0.1",
+    "sass-loader": "7.0.1",
+    "source-map-loader": "0.2.4",
+    "style-loader": "0.13.1",
+    "ts-loader": "6.0.0",
+    "typescript": "3.4.5",
+    "webpack": "4.30.0",
+    "webpack-cli": "3.0.8",
+    "webpack-dev-server": "3.1.4"
   },
   "peerDependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "prop-types": "^15.6.1"
+    "react": "16.8.6",
+    "react-dom": "16.8.6"
   }
 }

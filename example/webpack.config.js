@@ -2,7 +2,7 @@ const path = require("path");
 const rootPath = process.cwd();
 
 module.exports = (env, argv) => ({
-    entry: "./example/app/main.js",
+    entry: "./example/app/main.tsx",
     output: {
         path: rootPath + "/example",
         filename: "index.js"
@@ -14,24 +14,16 @@ module.exports = (env, argv) => ({
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.(t|j)sx?$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader'
+                    loader: 'ts-loader'
                 }
             },
             {
-                test: /\.less$/,
-                use: ["style-loader",
-                    "css-loader",
-                    {
-                        loader: "postcss-loader",
-                        options: {
-                            config: {path: __dirname, ctx: {env: argv.mode}},
-                            sourceMap: argv.mode !== "production",
-                        },
-                    },
-                    "less-loader"]
+                enforce: "pre",
+                test: /\.js$/,
+                loader: "source-map-loader"
             },
             {
                 test: /\.scss$/,
@@ -48,5 +40,8 @@ module.exports = (env, argv) => ({
                 ]
             }
         ],
-    }
+    },
+    resolve: {
+        extensions: [ '.tsx', '.ts', ".js", '.scss' ]
+    },
 });
