@@ -25,7 +25,7 @@ export default class ResponsiveContainer extends React.Component {
     super();
     this.state = {
       format: XS
-    }
+    };
     this.checkSize = this.checkSize.bind(this);
   }
 
@@ -36,6 +36,14 @@ export default class ResponsiveContainer extends React.Component {
     }
     else if (window.addEventListener) { // Common
       window.addEventListener('resize', this.checkSize, true);
+    }
+  }
+
+  componentWillUnmount() {
+    if (window.detachEvent) { // IE
+      window.detachEvent('onresize', this.checkSize);
+    } else if (window.removeEventListener) { // Common
+      window.removeEventListener('resize', this.checkSize, true);
     }
   }
 
