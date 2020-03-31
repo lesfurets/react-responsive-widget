@@ -23,7 +23,6 @@ coverage
 # Sources
 node_modules
 src
-styles
 docs
 example
 
