@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import ReactDom from "react-dom";
 import "../styles/responsive-grid.less";
 
@@ -64,12 +63,6 @@ export default class ResponsiveContainer extends React.Component {
     )
   }
 }
-
-ResponsiveContainer.propTypes = {
-  lg: PropTypes.number,
-  md: PropTypes.number,
-  sm: PropTypes.number
-};
 
 ResponsiveContainer.defaultProps = {
   lg: 1200,
