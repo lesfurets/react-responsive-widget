@@ -1,5 +1,4 @@
 import * as React from "react";
-import "../styles/responsive-container.scss";
 
 const XS = "app-xs";
 const SM = "app-sm";

@@ -1,5 +1,6 @@
 import * as React from "react";
 import {ResponsiveContainer} from "../../src/ResponsiveContainer";
+import "../../styles/responsive-container.scss";
 
 import "../styles/app.scss";
 
