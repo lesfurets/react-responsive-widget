@@ -19,6 +19,8 @@ let getFormat = (element) => {
   return XS;
 };
 
+export const ResponsiveContext = React.createContext(XS);
+
 export default class ResponsiveContainer extends React.Component {
   constructor() {
     super();
@@ -57,7 +59,9 @@ export default class ResponsiveContainer extends React.Component {
     return (
       <div className="app-container">
         <div className={this.state.format}>
-          {this.props.children}
+          <ResponsiveContext.Provider value={this.state.format}>
+            {this.props.children}
+          </ResponsiveContext.Provider>
         </div>
       </div>
     )
