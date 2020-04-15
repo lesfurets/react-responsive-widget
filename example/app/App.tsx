@@ -3,6 +3,7 @@ import {ResponsiveContainer} from "../../src/ResponsiveContainer";
 import "../../styles/responsive-container.scss";
 
 import "../styles/app.scss";
+import { DisplayCurrentBreakPoint } from "./DisplayCurrentBreakPoint";
 
 const MIN_WIDTH = 500;
 const START_WIDTH = 800;
@@ -59,6 +60,7 @@ export const App: React.FunctionComponent = () => {
             </div>
             <div className={"Demo-container"} style={{width: width + 'px'}}>
                 <ResponsiveContainer>
+                    <DisplayCurrentBreakPoint/>
                     <div className="Demo-item grid">
                         <div className="Demo-title">Grid</div>
                         <hr/>

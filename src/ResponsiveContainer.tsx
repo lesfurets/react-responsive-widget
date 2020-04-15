@@ -1,4 +1,5 @@
 import * as React from "react";
+import { FC, useState, useEffect, createContext, useRef } from "react";
 
 const XS = "app-xs";
 const SM = "app-sm";
@@ -6,61 +7,77 @@ const MD = "app-md";
 const LG = "app-lg";
 const XL = "app-xl";
 
-let getFormat = (element: HTMLDivElement, sm: number,md: number,lg: number,xl: number) => {
-    let elementWidth = element.offsetWidth;
-    if (elementWidth >= xl) {
-        return XL;
-    } else if (elementWidth >= lg) {
-        return LG;
-    } else if (elementWidth >= md) {
-        return MD;
-    } else if (elementWidth >= sm) {
-        return SM;
-    }
-    return XS;
+const getFormat = (
+  element: HTMLDivElement,
+  sm: number,
+  md: number,
+  lg: number,
+  xl: number
+) => {
+  const elementWidth = element.offsetWidth;
+  if (elementWidth >= xl) {
+    return XL;
+  }
+  if (elementWidth >= lg) {
+    return LG;
+  }
+  if (elementWidth >= md) {
+    return MD;
+  }
+  if (elementWidth >= sm) {
+    return SM;
+  }
+  return XS;
 };
 
 export interface ResponsiveContainerProps {
-    xl?: number;
-    lg?: number;
-    md?: number;
-    sm?: number;
-};
+  xl?: number;
+  lg?: number;
+  md?: number;
+  sm?: number;
+}
 
-export const ResponsiveContainer: React.FunctionComponent<ResponsiveContainerProps> = ({sm,md,lg,xl,children}) => {
-    const [format, setFormat] = React.useState(XS);
-    const containerRef = React.useRef<HTMLDivElement>(null);
-    const formatRef = React.useRef<HTMLDivElement>(null);
+export const ResponsiveContext = createContext(XS);
 
-    const checkSize = () => {
-        let newFormat = getFormat(containerRef.current!, sm!, md!, lg!, xl!);
-        if (newFormat !== formatRef.current!.className) {
-            setFormat(newFormat);
-        }
-    };
+export const ResponsiveContainer: FC<ResponsiveContainerProps> = ({
+  sm = 576,
+  md = 768,
+  lg = 992,
+  xl = 1200,
+  children,
+}) => {
+  const [format, setFormat] = useState(XS);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-    React.useEffect(() => {
-        checkSize();
-        if ((window as any).attachEvent) { // IE
-            (window as any).attachEvent('onresize', checkSize);
-        }
-        else if (window.addEventListener) { // Common
-            window.addEventListener('resize', checkSize, true);
-        }
-    },[]);
+  const checkSize = () => {
+    if (containerRef.current) {
+      const newFormat = getFormat(containerRef.current, sm, md, lg, xl);
+      if (newFormat !== format) {
+        setFormat(newFormat);
+      }
+    }
+  };
 
-    return (
-        <div className="app-container" ref={containerRef}>
-            <div className={format} ref={formatRef}>
-                {children}
-            </div>
-        </div>
-    );
-};
+  useEffect(() => {
+    checkSize();
+    if ((window as any).attachEvent) {
+      // IE
+      (window as any).attachEvent("onresize", checkSize);
+      return () => (window as any).detachEvent("onresize", checkSize);
+    } else if (window.addEventListener) {
+      // Common
+      window.addEventListener("resize", checkSize, true);
+      return () => window.removeEventListener("resize", checkSize, true);
+    }
+  }, []);
 
-ResponsiveContainer.defaultProps = {
-    xl: 1200,
-    lg: 992,
-    md: 768,
-    sm: 576
+  return (
+    <div className="app-container" ref={containerRef}>
+      <div className={format}>
+        <ResponsiveContext.Provider value={format}>
+          {children}
+        </ResponsiveContext.Provider>
+      </div>
+    </div>
+  );
 };
