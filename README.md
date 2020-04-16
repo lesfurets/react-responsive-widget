@@ -30,8 +30,22 @@ export default class App extends React.Component {
 
 # Presentation
 
-Making a respinsive widget in ReactJS might be complicated if we don't know the size of the container it will fit in.
+Making a responsive widget in ReactJS might be complicated if we don't know the size of the container it will fit in.
 Using a simple syntax close to bootstrap grid, the `react-responsive-widget` module allows you to create ReactJS Responsive Application without caring about it's integration. 
+
+# Current breakpoint in context
+
+If you wish to use the current breakpoint in your JS code, you may use the available context as followed (inside a ResponsiveContainer):
+
+```js
+import React from "react";
+import ResponsiveContainer from "react-responsive-widget";
+
+export const DisplayBreakPoint = () => {
+    const currentBreakPoint = useContext(ResponsiveContainer.context);
+    return <div>current breakpoint: {currentBreakPoint}</div>;
+}
+```
 
 ## Boostrap 
 ### The grid

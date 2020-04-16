@@ -73,3 +73,5 @@ ResponsiveContainer.defaultProps = {
   md: 992,
   sm: 768
 };
+
+ResponsiveContainer.context = ResponsiveContext;
